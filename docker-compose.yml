@@ -1,30 +1,42 @@
+version: '3'
+
 services:
   backend:
     build: 
       context: ./backend
       dockerfile: Dockerfile
     ports:
-      - "5000:5000"
+      - "5001:5001"
+      - "5678:5678"  # Debug port
     volumes:
       - ./backend:/app
     environment:
-      - FLASK_ENV=production
+      - FLASK_ENV=${FLASK_ENV:-development}
+      - FLASK_APP=app.py
       - DATABASE_URL=postgresql://user:password@db:5432/sellscalehood
     depends_on:
       - db
     restart: unless-stopped
+    command: ["sh", "-c", "pip install debugpy -t /tmp && python /tmp/debugpy --wait-for-client --listen 0.0.0.0:5678 -m flask run --host=0.0.0.0 --port=5001"]
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      target: ${FRONTEND_TARGET:-development}
     ports:
-      - "3000:80"
+      - "${FRONTEND_PORT:-3000}:${FRONTEND_PORT:-3000}"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - REACT_APP_API_URL=http://localhost:5001
+      - CHOKIDAR_USEPOLLING=true
+      - PORT=${FRONTEND_PORT:-3000}
     depends_on:
       - backend
-    environment:
-      - REACT_APP_API_URL=http://localhost:5000
-    restart: unless-stopped
+    stdin_open: true
+    tty: true
 
   db:
     image: postgres:13
