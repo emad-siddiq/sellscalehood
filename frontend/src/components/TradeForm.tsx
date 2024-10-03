@@ -7,7 +7,7 @@ const TradeForm: React.FC = () => {
 
   const handleTrade = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/trade', {
+      const response = await fetch('http://localhost:5001/api/trade', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -12,7 +12,7 @@ const StockSearch: React.FC = () => {
 
   const handleSearch = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/stock/${ticker}`);
+      const response = await fetch(`http://localhost:5001/api/stock/${ticker}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
