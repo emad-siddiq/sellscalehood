@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-Prereqs: Docker
+Prerequisites: Docker
 
 1. Clone the repository:
    ```
