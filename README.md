@@ -10,12 +10,7 @@ Prereqs: Docker
    cd sellscalehood
    ```
 
-2. Build the Docker images:
-   ```
-   docker-compose build
-   ```
-
-3. Start the application:
+2. Start the application:
    - For development/debug mode:
      ```
      ./scripts/debug.sh
@@ -25,7 +20,7 @@ Prereqs: Docker
      ./scripts/production.sh
      ```
 
-4. Access the application:
+3. Access the application:
    - Development mode:
      - Frontend: http://localhost:3000
      - Backend API: http://localhost:5001
