@@ -3,8 +3,6 @@ import { Layout, Typography, Menu, Row, Col } from 'antd';
 import { 
   LineChartOutlined, 
   PieChartOutlined, 
-  UserOutlined, 
-  SettingOutlined
 } from '@ant-design/icons';
 import StockSearch from './components/StockSearch';
 import Portfolio from './components/Portfolio';
@@ -58,12 +56,7 @@ const App: React.FC = () => {
           <Menu.Item key="2" icon={<PieChartOutlined />}>
             Portfolio
           </Menu.Item>
-          <Menu.Item key="3" icon={<UserOutlined />}>
-            Profile
-          </Menu.Item>
-          <Menu.Item key="4" icon={<SettingOutlined />}>
-            Settings
-          </Menu.Item>
+          
         </Menu>
       </Sider>
       <Layout style={{ marginLeft: 200, background: 'var(--rh-black)' }}>
