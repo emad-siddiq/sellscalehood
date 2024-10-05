@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Typography, Card, Spin, message } from 'antd';
 import { StockOutlined } from '@ant-design/icons';
-import './../darkTheme.css';  // Ensure you import your CSS file
+import './../darkTheme.css';
 
 const { Title } = Typography;
 
@@ -16,15 +16,17 @@ interface Stock {
 interface PortfolioProps {
   compact?: boolean;
   expanded?: boolean;
+  refreshTrigger: number;
 }
 
-const Portfolio: React.FC<PortfolioProps> = ({ compact = false, expanded = false }) => {
+const Portfolio: React.FC<PortfolioProps> = ({ compact = false, expanded = false, refreshTrigger }) => {
   const [portfolio, setPortfolio] = useState<Stock[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedRowKey, setSelectedRowKey] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchPortfolio = async () => {
+      setLoading(true);
       try {
         const response = await fetch('http://localhost:5001/api/portfolio');
         if (!response.ok) {
@@ -46,10 +48,10 @@ const Portfolio: React.FC<PortfolioProps> = ({ compact = false, expanded = false
     };
 
     fetchPortfolio();
-  }, []);
+  }, [refreshTrigger]);
 
   const handleRowClick = (record: Stock) => {
-    setSelectedRowKey(record.id);  // Set selected row by stock id
+    setSelectedRowKey(record.id);
   };
 
   const rowClassName = (record: Stock) => {
@@ -81,14 +83,14 @@ const Portfolio: React.FC<PortfolioProps> = ({ compact = false, expanded = false
     },
   ];
 
-  const compactColumns = columns.slice(0, 2);  // Only show Ticker and Quantity in compact mode
+  const compactColumns = columns.slice(0, 2);
 
   return (
     <div style={{ padding: '20px', height: '100%', backgroundColor: '#000000'}}>
       <Card
         title={<Title level={4} style={{color: 'var(--rh-green)' }}><StockOutlined  style={{color: 'var(--rh-green)' }}/> Your Portfolio</Title>}
-        style={{ height: '100%', display: 'flex', flexDirection: 'column', backgroundColor: "#1E1E1E" }}  // Ensure Card background is gray
-        bodyStyle={{ flex: 1, padding: 0, backgroundColor: '#1E1E1E' }}  // Ensure Card body has the same background color
+        style={{ height: '100%', display: 'flex', flexDirection: 'column', backgroundColor: "#1E1E1E" }}
+        bodyStyle={{ flex: 1, padding: 0, backgroundColor: '#1E1E1E' }}
       >
         <Table
           dataSource={portfolio}
@@ -104,7 +106,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ compact = false, expanded = false
           onRow={(record) => ({
             onClick: () => handleRowClick(record),
           })}
-          rowClassName={rowClassName}  // Apply row className conditionally
+          rowClassName={rowClassName}
         />
       </Card>
     </div>

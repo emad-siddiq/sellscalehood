@@ -16,6 +16,7 @@ const { Title } = Typography;
 
 const App: React.FC = () => {
   const [activeView, setActiveView] = useState<'dashboard' | 'portfolio'>('dashboard');
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
 
   const handleMenuClick = (key: string) => {
     if (key === '1') {
@@ -23,6 +24,10 @@ const App: React.FC = () => {
     } else if (key === '2') {
       setActiveView('portfolio');
     }
+  };
+
+  const handleTradeComplete = () => {
+    setRefreshTrigger(prev => prev + 1);
   };
 
   return (
@@ -76,13 +81,20 @@ const App: React.FC = () => {
                 </Col>
                 <Col xs={24} lg={12} style={{ height: '100%' }}>
                   <div style={{ marginBottom: '16px' }}>
-                    <TradeForm />
+                    <TradeForm onTradeComplete={handleTradeComplete} />
                   </div>
-                  <Portfolio />
+                  <Portfolio refreshTrigger={refreshTrigger} />
                 </Col>
               </Row>
             ) : (
-              <Portfolio expanded />
+              <Row gutter={[16, 16]}>
+                <Col xs={24} lg={16} style={{ height: '100%' }}>
+                  <Portfolio expanded refreshTrigger={refreshTrigger} />
+                </Col>
+                <Col xs={24} lg={8} style={{ height: '100%' }}>
+                  <TradeForm onTradeComplete={handleTradeComplete} />
+                </Col>
+              </Row>
             )}
           </div>
         </Content>

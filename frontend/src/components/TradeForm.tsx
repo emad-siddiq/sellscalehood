@@ -12,7 +12,11 @@ type Styles = {
   [key in StyleKey]: React.CSSProperties;
 };
 
-const TradeForm: React.FC = () => {
+interface TradeFormProps {
+  onTradeComplete: () => void;
+}
+
+const TradeForm: React.FC<TradeFormProps> = ({ onTradeComplete }) => {
   const [formData, setFormData] = useState<FormData>({
     ticker: '',
     quantity: '',
@@ -45,20 +49,20 @@ const TradeForm: React.FC = () => {
       await response.json();
       alert(`Successfully ${formData.action === 'buy' ? 'bought' : 'sold'} ${formData.quantity} shares of ${formData.ticker}`);
       setFormData({ ticker: '', quantity: '', action: '' });
+      onTradeComplete(); // Call the function to update the portfolio
     } catch (error) {
       console.error('Error trading stock:', error);
       alert('Error trading stock. Please try again.');
     }
   };
 
-  // Styles
   const styles: Styles = {
     card: {
       backgroundColor: '#1E1E1E',
       borderRadius: '8px',
       boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
       padding: '24px',
-      width: '400px',  // Changed from maxWidth: '400px' to a fixed width of 320px
+      width: '400px',
       margin: '20px auto',
     },
     cardTitle: {

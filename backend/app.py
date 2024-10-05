@@ -134,7 +134,7 @@ def trade():
     try:
         data = request.json
         ticker = data.get('ticker')
-        quantity = data.get('quantity')
+        quantity = int(data.get('quantity', 0))  # Convert to int
         action = data.get('action')
 
         if not all([ticker, quantity, action]):
@@ -162,6 +162,9 @@ def trade():
         logger.info(f"Successfully {action}ed {quantity} shares of {ticker}")
         return jsonify({'message': f'Successfully {action}ed {quantity} shares of {ticker}'}), 200
 
+    except ValueError:
+        logger.error("Invalid quantity provided", exc_info=True)
+        return jsonify({'error': 'Invalid quantity provided'}), 400
     except Exception as e:
         logger.error(f"Error processing trade: {str(e)}", exc_info=True)
         return jsonify({'error': 'Failed to process trade'}), 500
