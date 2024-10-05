@@ -1,6 +1,23 @@
-version: '3'
+version: '3.8'
 
 services:
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=sellscalehood
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - ./backend/core/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d sellscalehood"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   backend:
     build: 
       context: ./backend
@@ -15,43 +32,29 @@ services:
       - FLASK_APP=run.py
       - DATABASE_URL=postgresql://user:password@db:5432/sellscalehood
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     restart: unless-stopped
     command: ["sh", "-c", "pip install debugpy -t /tmp && python -m flask run --host=0.0.0.0 --port=5001"]
-
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-      target: ${FRONTEND_TARGET:-development}
     ports:
-      - "${FRONTEND_PORT:-3000}:${FRONTEND_PORT:-3000}"
+      - "3000:3000"
     volumes:
       - ./frontend:/app
       - /app/node_modules
     environment:
-      - REACT_APP_API_URL=http://localhost:5001
-      - CHOKIDAR_USEPOLLING=true
-      - PORT=${FRONTEND_PORT:-3000}
+      - NODE_ENV=${NODE_ENV:-development}
+      - REACT_APP_API_URL=http://backend:5001
     depends_on:
       - backend
-    stdin_open: true
-    tty: true
-
-  db:
-    image: postgres:13
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_DB=sellscalehood
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password
-    restart: unless-stopped
 
 volumes:
   postgres_data:
 
 networks:
   default:
-    name: app_network
+    name: sellscalehood-network
