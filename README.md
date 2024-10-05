@@ -2,6 +2,8 @@
 
 ## Getting Started
 
+Prereqs: Docker
+
 1. Clone the repository:
    ```
    git clone https://github.com/yourusername/sellscalehood.git
@@ -16,11 +18,11 @@
 3. Start the application:
    - For development/debug mode:
      ```
-     ./scripts/debug-mode.sh
+     ./scripts/debug.sh
      ```
    - For production mode:
      ```
-     ./scripts/production-mode.sh
+     ./scripts/production.sh
      ```
 
 4. Access the application:
@@ -31,7 +33,7 @@
      - Frontend: http://localhost
      - Backend API: http://localhost:5001
 
-Note: Make sure to make the scripts executable with `chmod +x scripts/debug-mode.sh scripts/production-mode.sh`.
+Note: Make sure to make the scripts executable with `chmod +x scripts/debug.sh scripts/production.sh`.
 
 ## Debugging
 
@@ -65,21 +67,11 @@ docker-compose down -v --rmi all
 
 ## Rebuilding After Changes
 
-If you make changes to the code or dependencies, you may need to rebuild the Docker images:
+If you make changes to the code or dependencies, you will need to rebuild the Docker images:
 
 ```
 docker-compose build
 ```
 
-Then start the application again using either `./scripts/debug-mode.sh` or `./scripts/production-mode.sh`.
+Then start the application again using either `./scripts/debug.sh` or `./scripts/production.sh`.
 
-## File Structure
-
-- `docker-compose.yml`: Defines the services, networks, and volumes for the application.
-- `frontend/Dockerfile`: Defines the build process for the frontend container.
-- `backend/Dockerfile`: Defines the build process for the backend container.
-- `.vscode/launch.json`: Configures VSCode for debugging.
-- `scripts/debug-mode.sh`: Script to start the application in debug mode.
-- `scripts/production-mode.sh`: Script to start the application in production mode.
-
-Make sure all these files are in place and properly configured for the application to work as expected.
