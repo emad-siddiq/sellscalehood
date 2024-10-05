@@ -1,0 +1,211 @@
+:root {
+    --rh-green: #00C805;
+    --rh-green-light: #00FF0A;
+    --rh-red: #FF5000;
+    --rh-black: #000000;
+    --rh-dark-gray: #1E1E1E;
+    --rh-text: #CCCCCC;
+    --rh-text-secondary: #8A8A8A;
+    --rh-border: #2A2A2A;
+    --rh-white: #eceaea;
+}
+
+body {
+    background-color: var(--rh-black);
+    color: var(--rh-text);
+    font-family: 'Roboto', sans-serif;
+}
+
+.ant-layout {
+    background: var(--rh-black);
+}
+
+.ant-card {
+    background: var(--rh-black);
+    border-color: var(--rh-border);
+}
+
+.ant-card-head {
+    background-color: var(--rh-black);
+    border-bottom: 1px solid var(--rh-border);
+}
+
+.ant-card-head-title {
+    color: var(--rh-green);
+}
+
+.ant-table {
+    background-color: var(--rh-black);
+    color: var(--rh-text);
+}
+
+.ant-table-thead > tr > th {
+    background-color: var(--rh-dark-gray) !important;
+    color: var(--rh-green) !important;
+    border-bottom: 1px solid var(--rh-border) !important;
+}
+
+.ant-table-tbody > tr > td {
+    border-bottom: 1px solid var(--rh-border) !important;
+    color: var(--rh-text);
+}
+
+.ant-table-tbody > tr:hover > td {
+    background-color: var(--rh-dark-gray) !important;
+}
+
+.ant-table-placeholder {
+    background-color: var(--rh-black) !important;
+}
+
+.ant-table-placeholder .ant-table-cell {
+    border-bottom: none !important;
+}
+
+.ant-empty-description {
+    color: var(--rh-text-secondary);
+}
+
+.ant-pagination-item {
+    background-color: var(--rh-black) !important;
+    border-color: var(--rh-border) !important;
+}
+
+.ant-pagination-item a {
+    color: var(--rh-green) !important;
+}
+
+.ant-pagination-item-active {
+    border-color: var(--rh-green) !important;
+}
+
+.ant-pagination-prev .ant-pagination-item-link,
+.ant-pagination-next .ant-pagination-item-link {
+    background-color: var(--rh-black) !important;
+    color: var(--rh-green) !important;
+    border-color: var(--rh-border) !important;
+}
+
+.ant-select-selector {
+    background-color: var(--rh-black) !important;
+    color: var(--rh-text) !important;
+    border-color: var(--rh-border) !important;
+}
+
+.ant-select-arrow {
+    color: var(--rh-green) !important;
+}
+
+
+.ant-input {
+    background-color: var(--rh-white) !important;
+    color: #000000 !important;
+    border-color: var(--rh-border) !important;
+}
+
+.ant-input-prefix {
+    color: var(--rh-green) !important;
+}
+
+.ant-layout-sider {
+    background: var(--rh-black);
+}
+
+.ant-menu.ant-menu-dark, .ant-menu-dark .ant-menu-sub, .ant-menu.ant-menu-dark .ant-menu-sub {
+    background: var(--rh-black);
+}
+
+.ant-layout-header {
+    background: var(--rh-black);
+}
+
+.ant-typography {
+    color: var(--rh-text);
+}
+
+.ant-menu-item-selected {
+    background-color: var(--rh-dark-gray) !important;
+}
+
+.ant-menu-item:hover {
+    background-color: var(--rh-dark-gray) !important;
+}
+
+.ant-menu-item-selected::after {
+    border-right: 3px solid var(--rh-green) !important;
+}
+
+.ant-btn-primary {
+    background-color: var(--rh-green);
+    border-color: var(--rh-green);
+}
+
+.ant-btn-primary:hover, .ant-btn-primary:focus {
+    background-color: var(--rh-green-light);
+    border-color: var(--rh-green-light);
+}
+
+.ant-spin-dot-item {
+    background-color: var(--rh-green);
+}
+
+.ant-menu-item {
+    color: var(--rh-green) !important;
+}
+
+.ant-menu-item-selected {
+    color: var(--rh-green-light) !important;
+}
+
+/* Styles for the portfolio table rows */
+.portfolio-row {
+    background-color: var(--rh-dark-gray); /* Gray background for normal rows */
+}
+
+.portfolio-row:nth-child(odd) {
+    background-color: var(--rh-dark-gray); /* Dark gray for odd rows */
+}
+
+.portfolio-row:nth-child(even) {
+    background-color: var(--rh-border); /* Slightly lighter gray for even rows */
+}
+
+/* Styles for the selected row */
+.selected-row {
+    background-color: var(--rh-green-light) !important; /* Highlighted green for selected row */
+    color: var(--rh-black); /* Optional: change text color for better contrast */
+}
+
+/* darkTheme.css */
+.ant-select-dropdown {
+    background-color: #eceaea !important; /* Set the dropdown background color */
+    color: #000 !important; /* Set the dropdown text color */
+  }
+  
+  /* Additionally, you can specify the active state and hover state */
+  .ant-select-item-option {
+    background-color: #eceaea !important; /* Default background */
+    color: #000 !important; /* Default text color */
+  }
+  
+  .ant-select-item-option-active,
+  .ant-select-item-option:hover {
+    background-color: #dcdcdc !important; /* Change this to a lighter gray for hover */
+    color: #000 !important; /* Ensure text remains visible */
+  }
+
+  &.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    background-color: #00C805 !important;
+    border-color: #00C805 !important;
+  }
+  
+  &.ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    border-color: #00C805 !important;
+    box-shadow: 0 0 0 2px rgba(0, 200, 5, 0.2) !important;
+  }
+
+  .ant-select-selection-placeholder {
+    color: rgba(0, 0, 0, 0.65) !important; 
+  }
+
+  

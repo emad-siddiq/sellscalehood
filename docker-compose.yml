@@ -17,7 +17,8 @@ services:
     depends_on:
       - db
     restart: unless-stopped
-    command: ["sh", "-c", "pip install debugpy -t /tmp && python /tmp/debugpy --wait-for-client --listen 0.0.0.0:5678 -m flask run --host=0.0.0.0 --port=5001"]
+    command: ["sh", "-c", "pip install debugpy -t /tmp && python -m flask run --host=0.0.0.0 --port=5001"]
+
 
   frontend:
     build:
