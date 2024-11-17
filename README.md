@@ -1,6 +1,6 @@
 # SellScaleHood
 
-![output](https://github.com/user-attachments/assets/f54b060b-571e-409c-805b-a96699df84b3)
+![output](https://github.com/user-attachments/assets/f82af377-b551-410a-bbdc-cd2d495c77f8)
 
 
 ## [Product Overview](https://youtu.be/xSFOfZmDhu4)
