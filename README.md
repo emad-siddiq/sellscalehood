@@ -1,6 +1,6 @@
 # SellScaleHood
 
-![Uploading output.gif…]()
+![output](https://github.com/user-attachments/assets/bcc040f4-9d9a-48e9-9046-5e809ff425e2)
 
 
 ## [Product Overview](https://youtu.be/xSFOfZmDhu4)
